@@ -9,9 +9,9 @@ public class ScoreDisplay extends PApplet
 {
 	public ArrayList<Note> notes = new ArrayList<Note>();
 
-	//String score = "DEFGABcd";
+	String score = "DEFGABcd";
 	//String score = "D2E2F2G2A2B2c2d2";
-	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
+	//String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 
 	float border;
 	float h;
@@ -90,10 +90,12 @@ public class ScoreDisplay extends PApplet
 
 			float calcNote = newNote % 'D';
 			float y_pos = (height * 0.4f + h - halfSpace) - (calcNote * (halfSpace));
-			circle(x_pos, y_pos, space);
 
-			
+			circle(x_pos, y_pos, space);
 			line(x_pos + halfSpace, y_pos, x_pos + halfSpace, y_pos - (space * 2.5f));
+			textAlign(CENTER);
+			textSize(20);
+			text(n.getNote(), x_pos, h);
 
 			if (n.getDuration() == 1) {
 				line(x_pos + 12, y_pos - (space * 2.5f), x_pos + 24, y_pos - (space * 2));
