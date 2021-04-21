@@ -13,6 +13,8 @@ public class ScoreDisplay extends PApplet
 	//String score = "D2E2F2G2A2B2c2d2";
 	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 
+	float border;
+
 	public void loadScore() {
 		for (int i = 0; i < score.length(); i++) {
 			char c1 = score.charAt(i);
@@ -43,6 +45,18 @@ public class ScoreDisplay extends PApplet
 			println(n.getNote() + "\t" + n.getDuration() + "\t" + type + "\n");
 		}
 	}
+
+	public void lines() {
+		int numLines = 5;
+		float h = height * 0.2f;
+		float space = h / numLines;
+		for (int i = 0; i < numLines; i++) {
+			stroke(0);
+			strokeWeight(3);
+
+			line(border, height * 0.4f + (space * i), width - border, height * 0.4f + (space * i));
+		}
+	}
 	
 	public void settings()
 	{
@@ -56,6 +70,7 @@ public class ScoreDisplay extends PApplet
 
 	public void setup() 
 	{
+		border = width * 0.1f;
 		loadScore();
 		printScores();
 	}
@@ -64,6 +79,7 @@ public class ScoreDisplay extends PApplet
 	{
 		background(255);
 		
+		lines();
 	}
 
 	void drawNotes()
