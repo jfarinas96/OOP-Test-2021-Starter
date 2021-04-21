@@ -15,15 +15,16 @@ public class ScoreDisplay extends PApplet
 
 	public void loadScore() {
 		for (int i = 0; i < score.length(); i++) {
-			char c = score.charAt(i);
+			char c1 = score.charAt(i);
+			char c2 = score.charAt(i + 1);
 			int d = 1;
 
-			if (Character.isDigit(i + 1)) {
-				d = c - '0';
+			if (Character.isDigit(c2)) {
+				d = c2 - '0';
 				i++;
 			}
 
-			Note n = new Note(c, d);
+			Note n = new Note(c1, d);
 			notes.add(n);
 		}
 	}
