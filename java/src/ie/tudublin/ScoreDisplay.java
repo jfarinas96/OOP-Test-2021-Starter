@@ -21,12 +21,14 @@ public class ScoreDisplay extends PApplet
 	public void loadScore() {
 		for (int i = 0; i < score.length(); i++) {
 			char c1 = score.charAt(i);
-			char c2 = score.charAt(i + 1);
 			int d = 1;
 
-			if (Character.isDigit(c2)) {
-				d = c2 - '0';
-				i++;
+			if (i != score.length() - 1) {
+				char c2 = score.charAt(i + 1);
+				if (Character.isDigit(c2)) {
+					d = c2 - '0';
+					i++;
+				}
 			}
 
 			Note n = new Note(c1, d);
@@ -45,7 +47,7 @@ public class ScoreDisplay extends PApplet
 				type = "Crotchet";
 			}
 
-			println(n.getNote() + "\t" + n.getDuration() + "\t" + type + "\n");
+			println(n.getNote() + "\t" + n.getDuration() + "\t" + type);
 		}
 	}
 
@@ -67,13 +69,15 @@ public class ScoreDisplay extends PApplet
 		float x_pos = border + (lengthSpace * 0.5f);
 
 		for (Note n:notes) {
-			float newNote = n.getNote();
+			char checkNote = Character.toUpperCase(n.getNote());
+			float newNote = checkNote;
+			float halfSpace = space * 0.5f;
 
-			if (n.getNote() < 'D') {
-				newNote = n.getNote() + 6;
+			if (n.getNote() < 'D' || Character.isLowerCase(n.getNote())) {
+				newNote += 7;
 			}
 
-			if (mouseX > x_pos - 11 && mouseX < x_pos + 11) {
+			if (mouseX > x_pos - halfSpace && mouseX < x_pos + halfSpace) {
 				stroke(255, 0, 0);
 				fill(255, 0, 0);
 			}
@@ -82,11 +86,14 @@ public class ScoreDisplay extends PApplet
 				fill(0);
 			}
 
-			float y_pos = map(newNote,'D','K', height * 0.4f + (space * 5), height * 0.4f);
-			circle(x_pos, y_pos, 22);
+			//float y_pos = map(newNote,'D','K', height * 0.4f + (space * 5.5f), height * 0.4f);
+
+			float calcNote = newNote % 'D';
+			float y_pos = (height * 0.4f + h - halfSpace) - (calcNote * (halfSpace));
+			circle(x_pos, y_pos, space);
 
 			
-			line(x_pos + 11, y_pos, x_pos + 11, y_pos - (space * 2.5f));
+			line(x_pos + halfSpace, y_pos, x_pos + halfSpace, y_pos - (space * 2.5f));
 
 			if (n.getDuration() == 1) {
 				line(x_pos + 12, y_pos - (space * 2.5f), x_pos + 24, y_pos - (space * 2));
