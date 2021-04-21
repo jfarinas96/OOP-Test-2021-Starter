@@ -9,9 +9,9 @@ public class ScoreDisplay extends PApplet
 {
 	public ArrayList<Note> notes = new ArrayList<Note>();
 
-	String score = "DEFGABcd";
+	//String score = "DEFGABcd";
 	//String score = "D2E2F2G2A2B2c2d2";
-	//String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
+	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 
 	float border;
 	float h;
