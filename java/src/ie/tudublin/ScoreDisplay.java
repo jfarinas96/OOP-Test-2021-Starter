@@ -27,6 +27,21 @@ public class ScoreDisplay extends PApplet
 			notes.add(n);
 		}
 	}
+
+	public void printScores() {
+		String type;
+
+		for (Note n:notes) {
+			if (n.getDuration() == 1) {
+				type = "Quaver";
+			}
+			else {
+				type = "Crotchet";
+			}
+
+			println(n.getNote() + "\t" + n.getDuration() + "\t" + type + "\n");
+		}
+	}
 	
 	public void settings()
 	{
@@ -41,6 +56,7 @@ public class ScoreDisplay extends PApplet
 	public void setup() 
 	{
 		loadScore();
+		printScores();
 	}
 
 	public void draw()
