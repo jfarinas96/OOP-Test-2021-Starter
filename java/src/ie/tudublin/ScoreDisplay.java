@@ -68,17 +68,24 @@ public class ScoreDisplay extends PApplet
 
 		for (Note n:notes) {
 			float newNote = n.getNote();
-			noStroke();
-			fill(0);
 
 			if (n.getNote() < 'D') {
-				newNote = n.getNote() + 7;
+				newNote = n.getNote() + 6;
+			}
+
+			if (mouseX > x_pos - 11 && mouseX < x_pos + 11) {
+				stroke(255, 0, 0);
+				fill(255, 0, 0);
+			}
+			else {
+				stroke(0);
+				fill(0);
 			}
 
 			float y_pos = map(newNote,'D','K', height * 0.4f + (space * 5), height * 0.4f);
 			circle(x_pos, y_pos, 22);
 
-			stroke(0);
+			
 			line(x_pos + 11, y_pos, x_pos + 11, y_pos - (space * 2.5f));
 
 			if (n.getDuration() == 1) {
